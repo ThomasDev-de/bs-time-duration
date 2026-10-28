@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>bsTimeDuration · Bootstrap demo</title>
+    <link href="../vendor/twbs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #17243a;
+            --muted: #64748b;
+            --accent: #5268e8;
+            --canvas: #f4f6fb;
+        }
+
+        body {
+            min-height: 100vh;
+            color: var(--ink);
+            background: var(--canvas);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+            background: radial-gradient(ellipse at 85% 0%, rgba(129, 140, 248, .45), transparent 32%),
+                        linear-gradient(125deg, #17243a 0%, #263b65 58%, #4358a8 100%);
+        }
+
+        .hero::after {
+            position: absolute;
+            right: -5rem;
+            bottom: -12rem;
+            width: 30rem;
+            height: 30rem;
+            border: 1px solid rgba(255, 255, 255, .13);
+            border-radius: 50%;
+            box-shadow: 0 0 0 2.5rem rgba(255, 255, 255, .035), 0 0 0 5rem rgba(255, 255, 255, .025);
+            content: "";
+        }
+
+        .hero-content { position: relative; z-index: 1; }
+        .eyebrow { color: #c7d2fe; letter-spacing: .14em; }
+        .hero-copy { max-width: 42rem; color: #d5deef; }
+
+        .demo-wrap { max-width: 1080px; margin-top: -2.25rem; position: relative; z-index: 2; }
+        .demo-card {
+            overflow: hidden;
+            border: 1px solid #e7ebf3;
+            border-radius: 1rem;
+            background: #fff;
+            box-shadow: 0 1.25rem 3.5rem rgba(25, 42, 75, .09);
+        }
+
+        .section-heading { display: flex; align-items: center; gap: .8rem; }
+        .section-number {
+            display: inline-grid;
+            width: 2rem;
+            height: 2rem;
+            place-items: center;
+            flex: 0 0 auto;
+            border-radius: .65rem;
+            color: var(--accent);
+            background: #eef0ff;
+            font-size: .8rem;
+            font-weight: 700;
+        }
+
+        .form-label { color: #34435b; font-size: .9rem; font-weight: 600; }
+        .form-control, .input-group-text { border-color: #dce2ec; }
+        .form-control:focus { border-color: #8997f1; box-shadow: 0 0 0 .22rem rgba(82, 104, 232, .14); }
+        .form-control-lg { min-height: calc(1.5em + 1.25rem + 2px); }
+        .input-group-text { color: #58677f; background: #f7f8fc; }
+        .input-group .form-floating { flex: 1 1 auto; min-width: 0; }
+        .input-group .form-floating > .form-control { border-radius: 0; }
+        .input-group > :first-child { border-top-left-radius: .375rem; border-bottom-left-radius: .375rem; }
+        .input-group > :last-child { border-top-right-radius: .375rem; border-bottom-right-radius: .375rem; }
+        .hint { color: var(--muted); font-size: .82rem; }
+        .code-pill {
+            padding: .18rem .45rem;
+            border: 1px solid #e6e9f1;
+            border-radius: .4rem;
+            color: #52617b;
+            background: #f8f9fc;
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: .75rem;
+        }
+
+        .btn-primary { --bs-btn-bg: var(--accent); --bs-btn-border-color: var(--accent); --bs-btn-hover-bg: #4358d1; --bs-btn-hover-border-color: #4358d1; }
+        .result { overflow-wrap: anywhere; }
+
+        @media (max-width: 575.98px) {
+            .hero { padding-bottom: 4rem !important; }
+            .demo-wrap { margin-top: -1.5rem; }
+            .demo-card { border-radius: .8rem; }
+        }
+    </style>
+</head>
+<body>
+<header class="hero py-5 py-lg-6">
+    <div class="container hero-content py-lg-4">
+        <div class="eyebrow small fw-bold text-uppercase mb-3">Bootstrap 5 · jQuery plugin</div>
+        <h1 class="display-5 fw-bold mb-3">Time inputs, made simple.</h1>
+        <p class="hero-copy fs-5 mb-0">
+            Enter a duration in a natural format. The plugin keeps the original form field,
+            submits the value in minutes, and builds a matching formatted input for you.
+        </p>
+    </div>
+</header>
+
+<main class="container demo-wrap pb-5">
+    <form id="duration-demo" class="demo-card p-3 p-md-5">
+        <section aria-labelledby="sizes-heading" class="mb-5">
+            <div class="section-heading mb-2">
+                <span class="section-number">01</span>
+                <h2 id="sizes-heading" class="h4 fw-bold mb-0">Input sizes</h2>
+            </div>
+            <p class="hint mb-4">The generated input inherits the original Bootstrap classes.</p>
+            <div class="row g-4 align-items-end">
+                <div class="col-md-4">
+                    <label for="duration-sm" class="form-label">Small</label>
+                    <input type="text" id="duration-sm" name="duration-sm"
+                           class="form-control form-control-sm js-duration"
+                           placeholder="e.g. 1h 23m" autocomplete="off">
+                </div>
+                <div class="col-md-4">
+                    <label for="duration" class="form-label">Default</label>
+                    <input type="text" id="duration" name="duration"
+                           class="form-control js-duration"
+                           placeholder="e.g. 1h 23m" autocomplete="off">
+                </div>
+                <div class="col-md-4">
+                    <label for="duration-lg" class="form-label">Large</label>
+                    <input type="text" id="duration-lg" name="duration-lg"
+                           class="form-control form-control-lg js-duration"
+                           placeholder="e.g. 1h 23m" autocomplete="off">
+                </div>
+            </div>
+        </section>
+
+        <hr class="border-secondary-subtle mb-5">
+
+        <section aria-labelledby="floating-heading" class="mb-4">
+            <div class="section-heading mb-2">
+                <span class="section-number">02</span>
+                <h2 id="floating-heading" class="h4 fw-bold mb-0">Floating labels &amp; add-ons</h2>
+            </div>
+            <p class="hint mb-4">Combine the input with Bootstrap floating labels and input-group add-ons.</p>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="form-floating">
+                        <input type="text" id="duration-floating" name="duration-floating"
+                               class="form-control js-duration"
+                               placeholder="Duration" autocomplete="off">
+                        <label for="duration-floating">Duration</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-text" aria-hidden="true">◷</span>
+                        <div class="form-floating">
+                            <input type="text" id="duration-floating-prefix" name="duration-floating-prefix"
+                                   class="form-control js-duration"
+                                   placeholder="Work duration" autocomplete="off">
+                            <label for="duration-floating-prefix">Work duration</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <div class="form-floating">
+                            <input type="text" id="duration-floating-suffix" name="duration-floating-suffix"
+                                   class="form-control js-duration"
+                                   placeholder="Project duration" autocomplete="off">
+                            <label for="duration-floating-suffix">Project duration</label>
+                        </div>
+                        <span class="input-group-text">min</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="border-secondary-subtle mb-5">
+
+        <section aria-labelledby="input-group-heading" class="mb-4">
+            <div class="section-heading mb-2">
+                <span class="section-number">03</span>
+                <h2 id="input-group-heading" class="h4 fw-bold mb-0">Input group</h2>
+            </div>
+            <p class="hint mb-4">Add text or an icon before and after a regular duration input.</p>
+            <div class="row g-4">
+                <div class="col-lg-8">
+                    <label for="duration-group" class="form-label">Billable time</label>
+                    <div class="input-group">
+                        <span class="input-group-text" aria-hidden="true">◷</span>
+                        <input type="text" id="duration-group" name="duration-group"
+                               class="form-control js-duration"
+                               placeholder="e.g. 2h 30m" autocomplete="off">
+                        <span class="input-group-text">duration</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3 pt-3">
+            <p class="hint mb-0">Try <span class="code-pill">1w 2d 3h 15m</span>, <span class="code-pill">1.5h</span>, or <span class="code-pill">90</span>.</p>
+            <button type="submit" class="btn btn-primary px-4 py-2">Show submitted values <span aria-hidden="true">→</span></button>
+        </div>
+        <div id="form-result" class="alert alert-light border result mt-4 mb-0 d-none" role="status" aria-live="polite"></div>
+    </form>
+    <footer class="text-center hint py-4">Durations are submitted as total minutes.</footer>
+</main>
+
+<script src="../vendor/components/jquery/jquery.min.js"></script>
+<script src="../vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../dist/bs-time-duration.min.js"></script>
+<script>
+    $('.js-duration').bsTimeDuration({
+        minutesPerDay: 480,
+        daysPerWeek: 5,
+        allowDays: true,
+        allowWeeks: true
+    });
+
+    $('#duration-demo').on('submit', function (event) {
+        event.preventDefault();
+        $('#form-result')
+            .removeClass('d-none')
+            .text('Submitted values: ' + $(this).serialize());
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "webcito/bs-time-duration",
+  "version": "1.0.0",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "thomas",
+      "email": "email@example.com"
+    }
+  ],
+  "require": {
+    "components/jquery": "^v3",
+    "twbs/bootstrap": "v5.3.8"
+  }
+}
