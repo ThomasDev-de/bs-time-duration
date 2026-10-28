@@ -1,17 +1,30 @@
 {
   "name": "webcito/bs-time-duration",
+  "description": "A lightweight jQuery plugin for Bootstrap 5 that lets users enter durations naturally and submits the total as minutes.",
   "version": "1.0.0",
-  "description": "description",
-  "minimum-stability": "stable",
-  "license": "proprietary",
+  "type": "library",
+  "license": "MIT",
+  "keywords": [
+    "bootstrap",
+    "bootstrap-5",
+    "duration",
+    "duration-input",
+    "jquery",
+    "jquery-plugin",
+    "time-duration"
+  ],
+  "homepage": "https://github.com/ThomasDev-de/bs-time-duration",
   "authors": [
     {
-      "name": "thomas",
-      "email": "email@example.com"
+      "name": "Thomas"
     }
   ],
+  "support": {
+    "issues": "https://github.com/ThomasDev-de/bs-time-duration/issues",
+    "source": "https://github.com/ThomasDev-de/bs-time-duration"
+  },
   "require": {
-    "components/jquery": "^v3",
+    "components/jquery": "^3.0",
     "twbs/bootstrap": "v5.3.8"
   }
 }
