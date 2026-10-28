@@ -13,10 +13,12 @@
     "jquery-plugin",
     "time-duration"
   ],
-  "homepage": "https://github.com/ThomasDev-de/bs-time-duration",
+  "homepage": "https://github.webcito.de/?plugin=bs-time-duration",
   "authors": [
     {
-      "name": "Thomas"
+      "name": "Thomas Kirsch",
+      "email": "t.kirsch@webcito.de",
+      "role": "Chief Developer"
     }
   ],
   "support": {
